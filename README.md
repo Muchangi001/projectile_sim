@@ -34,13 +34,13 @@ This simulator demonstrates fundamental physics concepts:
 
 1. **Create a new folder** for your game:
    ```bash
-   mkdir physics-simulator
-   cd physics-simulator
+   mkdir projectile_sim
+   cd projectile_sim
    ```
 
 2. **Initialize a Go project**:
    ```bash
-   go mod init physics-simulator
+   go mod init projectile_sim
    ```
    This creates a `go.mod` file that tracks your project's dependencies.
 
@@ -52,7 +52,7 @@ This simulator demonstrates fundamental physics concepts:
 
 4. **Create the main game file**:
    - Copy the game code into a file named `main.go`
-   - Save it in your `physics-simulator` folder
+   - Save it in your `projectile-sim` folder
 
 5. **Run the game**:
    ```bash
