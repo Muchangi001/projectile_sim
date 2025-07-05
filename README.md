@@ -52,7 +52,7 @@ This simulator demonstrates fundamental physics concepts:
 
 4. **Create the main game file**:
    - Copy the game code into a file named `main.go`
-   - Save it in your `projectile-sim` folder
+   - Save it in your `projectile_sim` folder
 
 5. **Run the game**:
    ```bash
