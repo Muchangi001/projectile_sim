@@ -1,6 +1,6 @@
 # Physics Simulator - Projectile Motion Education Game
 
-A complete physics education game built with Go and Ebiten that teaches projectile motion through interactive experimentation. Students can launch projectiles, adjust parameters, and observe real-time physics calculations.
+A complete physics education game built with Ebiten that teaches projectile motion through interactive experimentation. Students can launch projectiles, adjust parameters, and observe real-time physics calculations.
 
 ![Game Screenshot](screenshot.png)
 
