@@ -62,7 +62,7 @@ type Game struct {
 	attempts      int
 }
 
-// Constants
+// Consts
 var (
 	defaultGravity   = 9.8   // m/s²
 	defaultScale     = 50.0  // pixels per meter
@@ -87,7 +87,7 @@ func NewGame() *Game {
 		Color:       color.RGBA{255, 100, 100, 255},
 	}
 	
-	// Add some targets
+	// Targets
 	game.targets = []Vector2{
 		{800, float64(screenHeight - groundHeight - 50)},
 		{600, float64(screenHeight - groundHeight - 100)},
@@ -104,7 +104,7 @@ func (b *Ball) Update(dt float64) {
 	
 	b.Time += dt
 	
-	// Physics equations for projectile motion
+	// Physics projectile motion equations
 	b.Position.X = b.InitialPos.X + b.InitialVel.X*b.Time
 	b.Position.Y = b.InitialPos.Y - (b.InitialVel.Y*b.Time - 0.5*9.8*b.Time*b.Time)
 	
@@ -113,7 +113,7 @@ func (b *Ball) Update(dt float64) {
 		lastPos := b.Trail[len(b.Trail)-1]
 		distance := math.Sqrt((b.Position.X-lastPos.X)*(b.Position.X-lastPos.X) + 
 							 (b.Position.Y-lastPos.Y)*(b.Position.Y-lastPos.Y))
-		if distance > 5 { // Only add if moved enough
+		if distance > 5 {
 			b.Trail = append(b.Trail, b.Position)
 		}
 	} else {
@@ -133,7 +133,7 @@ func (b *Ball) Launch(angle, power float64, startPos Vector2) {
 	b.Position = startPos
 	b.Trail = []Vector2{startPos}
 	
-	// Convert angle to radians and calculate initial velocity
+	// Convert to rads
 	angleRad := angle * math.Pi / 180.0
 	b.InitialVel = Vector2{
 		X: power * math.Cos(angleRad),
@@ -154,7 +154,6 @@ func (b *Ball) IsGrounded() bool {
 
 func (g *Game) Update() error {
 	if !g.paused {
-		// Handle input
 		if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
 			if !g.ball.Launched {
 				g.ball.Launch(g.aimAngle, g.aimPower, g.cannon)
@@ -165,7 +164,6 @@ func (g *Game) Update() error {
 			}
 		}
 		
-		// Aim controls
 		if ebiten.IsKeyPressed(ebiten.KeyArrowUp) && g.aimAngle < 90 {
 			g.aimAngle += 1
 		}
@@ -200,7 +198,6 @@ func (g *Game) Update() error {
 		}
 	}
 	
-	// Toggle controls
 	if inpututil.IsKeyJustPressed(ebiten.KeyT) {
 		g.showTrail = !g.showTrail
 	}
@@ -241,7 +238,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 						 float32(endX), float32(endY), 3, color.RGBA{255, 255, 0, 255}, false)
 	}
 	
-	// Draw predicted trajectory (parabola)
+	// Draw predicted trajectory
 	if !g.ball.Launched && g.showVectors {
 		angleRad := g.aimAngle * math.Pi / 180.0
 		vx := g.aimPower * math.Cos(angleRad)
